@@ -121,6 +121,22 @@ router.post(
         `${process.env.APP_URL}/auth/reset-password`
       );
 
+      // Generate token
+      const token = jwt.sign(
+        {
+          userId: user.id,
+        },
+        process.env.JWT_SECRET_KEY as string,
+        { expiresIn: "1d" }
+      );
+      // Send token
+      res.cookie("auth_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 86400000,
+        sameSite: "none",
+      });
+
       return res.status(200).json({ message: "Check your email." });
     } catch (error) {
       console.log(error);

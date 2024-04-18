@@ -79,7 +79,7 @@ export class DashboardComponent {
     this.authService.logout('/api/auth/logout').subscribe({
       next: (data) => {
         this.notifications.notifySuccess(data.message);
-        this.validateToken();
+        this.router.navigate(['/auth/login']);
       },
       error: (error) => {
         this.notifications.notifySuccess(error.error.message);

@@ -38,23 +38,21 @@ export class LoginComponent {
 
   signIn(credentials: User) {
     this.formLoading = true;
-    this.authService
-      .login('http://localhost:3000/api/auth/login', credentials)
-      .subscribe({
-        next: (data) => {
-          this.formLoading = false;
-          if (data.user.logCount === 0) {
-            this.router.navigate(['/auth/reset-password']);
-          } else {
-            this.router.navigate(['/dashboard']);
-          }
-          this.dataService.updateUserData(data.user);
-          this.notifications.notifySuccess(data.message);
-        },
-        error: (error) => {
-          this.formLoading = false;
-          this.notifications.notifyError(error.error.message);
-        },
-      });
+    this.authService.login('/api/auth/login', credentials).subscribe({
+      next: (data) => {
+        this.formLoading = false;
+        if (data.user.logCount === 0) {
+          this.router.navigate(['/auth/reset-password']);
+        } else {
+          this.router.navigate(['/dashboard']);
+        }
+        this.dataService.updateUserData(data.user);
+        this.notifications.notifySuccess(data.message);
+      },
+      error: (error) => {
+        this.formLoading = false;
+        this.notifications.notifyError(error.error.message);
+      },
+    });
   }
 }

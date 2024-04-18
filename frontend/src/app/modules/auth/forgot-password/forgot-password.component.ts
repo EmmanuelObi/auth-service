@@ -33,10 +33,7 @@ export class ForgotPasswordComponent {
   onReset(credentials: User) {
     this.formLoading = true;
     this.userService
-      .forgotPassword(
-        'http://localhost:3000/api/auth/forgot-password',
-        credentials
-      )
+      .forgotPassword('/api/auth/forgot-password', credentials)
       .subscribe({
         next: () => {
           this.router.navigate([`/auth/check-email/${credentials.email}`]);

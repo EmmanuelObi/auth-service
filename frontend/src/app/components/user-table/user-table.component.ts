@@ -99,17 +99,15 @@ export class UserTableComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService
-      .getUsers('http://localhost:3000/api/user/users')
-      .subscribe({
-        next: (data: User[]) => {
-          this.dataService.updateAllUsersData(data);
-          this.notifications.notifySuccess('Fetched Users');
-        },
-        error: (error) => {
-          this.notifications.notifyError(error.error.message);
-        },
-      });
+    this.userService.getUsers('/api/user/users').subscribe({
+      next: (data: User[]) => {
+        this.dataService.updateAllUsersData(data);
+        this.notifications.notifySuccess('Fetched Users');
+      },
+      error: (error) => {
+        this.notifications.notifyError(error.error.message);
+      },
+    });
   }
 
   getColorCode(role: string) {

@@ -38,10 +38,7 @@ export class ResetPasswordComponent {
     this.formLoading = true;
 
     this.userService
-      .resetPassword(
-        'http://localhost:3000/api/user/reset-password',
-        credentials
-      )
+      .resetPassword('/api/user/reset-password', credentials)
       .subscribe({
         next: (data) => {
           this.formLoading = false;

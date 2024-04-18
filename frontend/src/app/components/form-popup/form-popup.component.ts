@@ -91,15 +91,13 @@ export class FormPopupComponent {
   }
 
   getUsers() {
-    this.userService
-      .getUsers('http://localhost:3000/api/user/users')
-      .subscribe({
-        next: (data: User[]) => {
-          this.dataService.updateAllUsersData(data);
-        },
-        error: (error) => {
-          this.notifications.notifyError(error.error.message);
-        },
-      });
+    this.userService.getUsers('/api/user/users').subscribe({
+      next: (data: User[]) => {
+        this.dataService.updateAllUsersData(data);
+      },
+      error: (error) => {
+        this.notifications.notifyError(error.error.message);
+      },
+    });
   }
 }

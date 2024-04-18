@@ -138,6 +138,7 @@ router.post("/logout", (req: Request, res: Response) => {
   res.cookie("auth_token", "", {
     expires: new Date(0),
     sameSite: "none",
+    secure: process.env.NODE_ENV === "production",
   });
   res.json({ message: "Logged out successfully." });
 });

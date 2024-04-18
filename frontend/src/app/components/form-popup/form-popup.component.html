@@ -1,0 +1,82 @@
+<p-dialog
+  [header]="header"
+  [(visible)]="display"
+  [modal]="true"
+  [closable]="false"
+>
+  <div
+    [formGroup]="userForm"
+    class="w-full max-w-3xl my-2 flex justify-between items-center gap-3 flex-wrap"
+  >
+    <div class="flex justify-between gap-2 items-start w-[calc(45%)] flex-col">
+      <label for="firstname">First Name</label>
+      <input
+        formControlName="firstName"
+        type="text"
+        placeholder="Enter First Name..."
+        id="firstname"
+        class="w-full border-1 rounded-md h-12 border-button-blue outline-none p-2"
+      />
+    </div>
+    <div class="flex justify-between gap-2 items-start w-[calc(45%)] flex-col">
+      <label for="lastname">Last Name</label>
+      <input
+        formControlName="lastName"
+        type="text"
+        placeholder="Enter Last Name..."
+        id="lastname"
+        class="w-full border-1 rounded-md h-12 border-button-blue outline-none p-2"
+      />
+    </div>
+    <div class="flex justify-between gap-2 items-start w-[calc(45%)] flex-col">
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        placeholder="Enter Email..."
+        id="email"
+        class="w-full z-10 border-1 rounded-md h-12 border-button-blue outline-none p-2"
+      />
+    </div>
+    <div
+      class="flex self-end justify-between gap-2 items-start w-[calc(45%)] flex-col"
+    >
+      <label for="lastname">User Role(s)</label>
+      <p-multiSelect
+        [options]="roles"
+        formControlName="role"
+        placeholder="Select Role"
+        class="w-full border-1 rounded-md h-12 border-button-blue"
+      ></p-multiSelect>
+    </div>
+    <div class="flex self-end gap-3 my-4 w-[calc(45%)]">
+      <label for="isAdmin">Make user an Admin</label>
+      <p-checkbox
+        formControlName="isAdmin"
+        value="true"
+        inputId="isAdmin"
+        class="border-1 size-6 rounded-md border-gray-400"
+      ></p-checkbox>
+    </div>
+  </div>
+  <p-footer>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-times"
+      label="Cancel"
+      (click)="onCancel()"
+      class="bg-red-500 text-white py-3 mr-2 px-4 my-2"
+    ></button>
+    <button
+      type="button"
+      pButton
+      [loading]="loading"
+      icon="pi pi-check"
+      label="Confirm"
+      [disabled]="!userForm.valid"
+      (click)="onConfirm()"
+      class="bg-green-500 text-white py-3 ml-2 px-4 my-2"
+    ></button>
+  </p-footer>
+</p-dialog>

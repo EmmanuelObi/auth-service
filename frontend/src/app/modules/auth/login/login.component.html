@@ -1,0 +1,70 @@
+<div class="w-full h-full flex flex-col justify-between items-center">
+  <img
+    class="self-start"
+    src="../../../../assets/images/green-top.svg"
+    alt="side green"
+  />
+  <!-- Actual login form -->
+  <div
+    [formGroup]="loginForm"
+    class="min-w-[calc(70%) flex flex-col justify-center gap-3 items-center"
+  >
+    <h3 class="text-primary font-bold text-4xl self-start">Sign In</h3>
+    <p class="text-xs text-green-800 self-start">
+      Admin Credentials - (test&#64;testadmin.com, testpassword$ )
+    </p>
+
+    <div class="w-full flex flex-col justify-between my-2 gap-2 items-start">
+      <label class="text-sm text-label font-medium" for="email">Email*</label>
+      <input
+        class="drop-shadow-md rounded-lg h-12 p-3 w-full border-1 border-border-input"
+        type="email"
+        id="email"
+        placeholder="Enter your work email"
+        formControlName="email"
+      />
+    </div>
+    <div class="w-full flex flex-col justify-between my-2 gap-2 items-start">
+      <label class="text-sm text-label font-medium" for="password"
+        >Password*</label
+      >
+      <input
+        class="drop-shadow-md rounded-lg h-12 p-3 w-full border-1 border-border-input"
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        formControlName="password"
+      />
+    </div>
+    <button
+      (click)="onClickSignIn()"
+      [class.disabled]="!loginForm.valid"
+      class="drop-shadow-md w-full flex justify-center items-center bg-button-blue text-white my-4 rounded-lg h-12 py-3 px-5 text-center"
+    >
+      <svg
+        *ngIf="formLoading"
+        class="animate-spin bg-white h-5 w-5"
+        viewBox="0 0 24 24"
+      ></svg>
+      <span *ngIf="!formLoading">Sign In</span>
+    </button>
+
+    <a
+      href="/auth/forgot-password"
+      class="text-button-blue text-sm font-medium w-full text-center mt-2"
+      >Forgot Password</a
+    >
+  </div>
+  <div
+    class="w-full flex justify-between items-center text-xs md:text-sm font-normal text-page-grey"
+  >
+    <p>©2024 Emmanuel Obi</p>
+    <a
+      href="mailto:obiemmy123@gmail.com"
+      class="flex justify-between items-center gap-1"
+    >
+      <img src="../../../../assets/images/mail.svg" alt="mail" />
+      help&#64;engineeringteam.dev</a
+    >
+  </div>
+</div>

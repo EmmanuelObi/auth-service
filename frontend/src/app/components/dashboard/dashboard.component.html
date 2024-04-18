@@ -1,0 +1,74 @@
+<div class="w-full m-0 p-0 flex flex-col justify-start items-center min-h-dvh">
+  <div
+    class="h-24 w-full bg-button-blue flex justify-between items-center md:pl-8 md:pr-16 px-10"
+  >
+    <img
+      src="../../../assets/images/Accessor_transparent.png"
+      alt="logo"
+      class="md:w-32 w-16"
+    />
+    <div class="flex justify-between items-center gap-3">
+      <i class="pi pi-user" style="font-size: 1.5rem; color: #43e8d5"></i>
+      <span class="text-white"
+        >{{ userData.firstName }} {{ userData.lastName }}</span
+      >
+    </div>
+  </div>
+  <div class="w-full flex-grow flex">
+    <div
+      class="w-16 md:w-32 lg:w-60 flex flex-col py-10 justify-between items-center drop-shadow-lg border-1 p-0"
+    >
+      <p
+        class="w-full cursor-pointer bg-button-blue text-white text-center min-h-16 flex justify-center items-center gap-4"
+      >
+        <span class="hidden md:block">Users</span>
+        <i class="pi pi-user" style="font-size: 1.5rem; color: #43e8d5"></i>
+      </p>
+      <p
+        (click)="logOutUser()"
+        class="hover:bg-red-500 hover:text-white transition w-full cursor-pointer text-button-blue text-center min-h-16 flex justify-center items-center gap-4"
+      >
+        <span class="hidden md:block"> Log Out</span>
+        <i class="pi pi-sign-out" style="font-size: 1.5rem; color: #43e8d5"></i>
+      </p>
+    </div>
+    <div class="flex-grow py-10 px-16 overflow-scroll">
+      <div
+        class="w-full flex flex-col md:flex-row mb-5 justify-between items-center mt-4 md:mt-0"
+      >
+        <h2 class="text-2xl font-semibold">
+          User Management ({{ allUsers.length }})
+        </h2>
+        <button
+          (click)="toggleAddPopup()"
+          *ngIf="userData.isAdmin"
+          pButton
+          label="Create User"
+          icon="pi pi-plus"
+          class="bg-button-blue text-white p-3 font-normal rounded-md"
+        ></button>
+      </div>
+      <app-user-table
+        (delete)="deleteUser($event)"
+        (edit)="toggleEditPopup($event)"
+      ></app-user-table>
+    </div>
+  </div>
+</div>
+
+<app-form-popup
+  header="Create New User"
+  [display]="displayAddPopup"
+  (displayChange)="toggleDisplay($event)"
+  (confirm)="onConfirmAdd($event)"
+  [loading]="loading"
+></app-form-popup>
+
+<app-form-popup
+  [loading]="loading"
+  [user]="selectedUser"
+  header="Edit User"
+  [display]="displayEditPopup"
+  (displayChange)="toggleEditDisplay($event)"
+  (confirm)="onConfirmEdit($event)"
+></app-form-popup>

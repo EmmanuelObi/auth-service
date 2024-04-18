@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .header h1 {
+        color: #333;
+        font-size: 24px;
+        margin: 0;
+      }
+
+      .content {
+        margin-bottom: 30px;
+      }
+
+      .content p {
+        margin: 0 0 10px;
+        line-height: 1.5;
+      }
+
+      .footer {
+        text-align: center;
+      }
+
+      .footer p {
+        color: #999;
+        font-size: 14px;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Dear {{firstName}},</h1>
+      </div>
+      <div class="content">
+        <p>
+          Your temporary login credentials are Email:
+          <strong>{{email}}</strong> and Password:
+          <strong>{{password}}</strong>
+        </p>
+        <p>You must reset your password upon login.</p>
+        <p>
+          Follow this link to do so
+          <a href="{{link}}" target="_blank">{{link}}</a>
+        </p>
+      </div>
+      <div class="footer">
+        <p>Best regards,</p>
+        <p>Engineering Team</p>
+      </div>
+    </div>
+  </body>
+</html>

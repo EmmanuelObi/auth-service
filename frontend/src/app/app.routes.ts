@@ -1,12 +1,8 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ScreenComponent } from './components/screen/screen.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
   {
     path: 'auth',
     loadChildren: () =>
@@ -15,5 +11,14 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+  },
+  {
+    path: 'screen',
+    component: ScreenComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'screen',
+    pathMatch: 'full',
   },
 ];
